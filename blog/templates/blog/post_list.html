@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>publicado: {{ post.published_date }}</p>
+                    </div>
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>                    
+                    <p>{{ post.text|linebreaksbr }}</p>
+                    <!--<a href="{% url 'post_detail' pk=post.pk %}">Comments: {#{{ post.comments.count }}#}</a>-->
+                    <a href="{% url 'post_detail' pk=post.pk %}">Comentarios: {{ post.approved_comments.count }}</a>
+		    <div style='padding-bottom:15px;'></div>
+                    <hr style='background-color:red;'>
+                </div>
+            {% endfor %}
+{% endblock content %}
